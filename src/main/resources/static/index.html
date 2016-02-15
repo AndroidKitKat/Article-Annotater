@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
+</head>
+<body ng-app="ArticleAnnotater" ng-cloak>
+	<md-toolbar>
+	  <div class="md-toolbar-tools">
+	    <h2 class="md-flex">Article annotater</h2>
+	  </div>
+	</md-toolbar>
+	<div ng-controller="ExtractorCtrl" layout-sm="column">
+		<md-content layout="row" layout-align="center" layout-wrap flex>
+			<form>
+		  		<md-input-container>
+					<label>Article URL</label>
+					<textarea ng-model="url" md-select-on-focus></textarea>
+				</md-input-container>
+				<md-button ng-click="extract()" ng-disabled="isUrlEmpty()" class="md-primary md-raised">Get</md-button>
+			</form>
+		</md-content>
+
+		<md-content layout="row" layout-wrap flex layout-padding>
+			<div ng-bind-html="article"></div>
+		</md-content>
+	</div>
+  
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script>
+  
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript">
+    angular
+    	.module('ArticleAnnotater', ['ngMaterial'])
+    	.controller('ExtractorCtrl', function($scope, $http, $sce) {
+ 				$scope.url = "";
+
+	 			$scope.extract = function() {
+					$http
+						.get('/article?url=' + encodeURIComponent($scope.url))
+				        .success(function(data) {
+				            $scope.article = $sce.trustAsHtml(data.text);
+				        });
+				};
+				$scope.isUrlEmpty = function() {
+					return $scope.url == null || $scope.url.length == 0;
+				};
+			});
+  </script>
+  
+</body>
+</html>
