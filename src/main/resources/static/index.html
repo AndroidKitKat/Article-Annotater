@@ -4,13 +4,33 @@
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
 </head>
-<body ng-app="ArticleAnnotater" ng-cloak>
+<body ng-app="ArticleAnnotater" ng-controller="AppCtrl" ng-cloak>
 	<md-toolbar>
 	  <div class="md-toolbar-tools">
 	    <h2 class="md-flex">Article annotater</h2>
 	  </div>
 	</md-toolbar>
-	<div ng-controller="ExtractorCtrl" layout-sm="column">
+
+	<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+		<md-toolbar class="md-theme-light">
+		</md-toolbar>
+		<md-content ng-controller="CommentsCtrl" layout-padding>
+			<p hide-md="" show-gt-md="" ng-bind="selectedText"></p>
+			<!--  <form>
+				<md-input-container>
+				  <label for="testInput">Comment</label>
+				  <input type="text" id="testInput"
+				         ng-model="data" md-autofocus>
+				</md-input-container>
+			</form>
+			<md-button ng-click="close()" class="md-primary">
+ 				Close
+			</md-button>
+			-->
+		</md-content>
+    </md-sidenav>
+
+	<div ng-controller="ExtractorCtrl" layout-sm="column">	
 		<md-content layout="row" layout-align="center" layout-wrap flex>
 			<form>
 		  		<md-input-container>
@@ -22,7 +42,10 @@
 		</md-content>
 
 		<md-content layout="row" layout-wrap flex layout-padding>
-			<div ng-bind-html="article"></div>
+			<div ng-bind-html="article"
+				 ng-mouseup="showSelectedText()" ng-keyup="onKeyUp($event)"
+				 event-focus-id="article" tabindex="0">
+			</div>
 		</md-content>
 	</div>
   
@@ -39,20 +62,57 @@
   <script type="text/javascript">
     angular
     	.module('ArticleAnnotater', ['ngMaterial'])
-    	.controller('ExtractorCtrl', function($scope, $http, $sce) {
- 				$scope.url = "";
+    	.controller('AppCtrl', function ($scope, $mdSidenav) {
+    		$scope.toggleRight = function() {
+				$mdSidenav('right')
+		          .toggle()
+		          .then(function () {
+		          });
+			};
 
-	 			$scope.extract = function() {
-					$http
-						.get('/article?url=' + encodeURIComponent($scope.url))
-				        .success(function(data) {
-				            $scope.article = $sce.trustAsHtml(data.text);
-				        });
-				};
-				$scope.isUrlEmpty = function() {
-					return $scope.url == null || $scope.url.length == 0;
-				};
-			});
+			$scope.onKeyUp = function ($event) {
+				var key = window.event ? $event.keyCode : $event.which;
+				if (key == '67') {
+					$scope.toggleRight();
+				}
+		    };
+
+			$scope.showSelectedText = function() {
+		        $scope.selectedText = $scope.getSelectionText();
+		        focus("article");
+		    };
+		    
+		    $scope.getSelectionText = function() {
+				if(window.getSelection) {
+				    return window.getSelection().toString();
+				}
+				
+				if(document.selection && document.selection.type != "Control") {
+				    return document.selection.createRange().text;
+				}
+				return "";
+		    };
+		})
+    	.controller('ExtractorCtrl', function($scope, $http, $sce) {
+			$scope.url = "";
+
+			$scope.extract = function() {
+				$http
+					.get('/article?url=' + encodeURIComponent($scope.url))
+			        .success(function(data) {
+			            $scope.article = $sce.trustAsHtml(data.text);
+			        });
+			};
+			$scope.isUrlEmpty = function() {
+				return $scope.url == null || $scope.url.length == 0;
+			};
+		})
+		.controller('CommentsCtrl', function($scope, $mdSidenav) {
+			$scope.close = function() {
+				$mdSidenav('right').close().then(function() {
+				});
+			};
+		});
   </script>
   
 </body>
