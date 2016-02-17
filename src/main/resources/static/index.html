@@ -37,8 +37,11 @@
 			   <label>Article URL</label>
 			   <input ng-model="url" md-select-on-focus>
 			</md-input-container>
+			<md-button ng-click="extract()" class="md-fab" ng-disabled="isUrlEmpty()">
+	            <md-icon md-svg-src="img/icons/ic_search_black_24px.svg"></md-icon>
+	        </md-button>
 	  		<div>
-	  			<md-button ng-click="extract()" ng-disabled="isUrlEmpty()" class="md-primary md-raised">Get</md-button>
+	  			
 	  		</div>
   		</md-content>
 
