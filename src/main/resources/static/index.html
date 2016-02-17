@@ -15,18 +15,13 @@
 		<md-toolbar class="md-theme-light">
 		</md-toolbar>
 		<md-content ng-controller="CommentsCtrl" layout-padding>
-			<p hide-md="" show-gt-md="" ng-bind="selectedText"></p>
-			<!--  <form>
-				<md-input-container>
-				  <label for="testInput">Comment</label>
-				  <input type="text" id="testInput"
-				         ng-model="data" md-autofocus>
-				</md-input-container>
-			</form>
-			<md-button ng-click="close()" class="md-primary">
- 				Close
-			</md-button>
-			-->
+			<p ng-bind="selectedText"></p>
+			
+			<md-input-container>
+			  <label for="testInput">Comment</label>
+			  <input type="text"
+			         ng-model="comment" md-autofocus>
+			</md-input-container>
 		</md-content>
     </md-sidenav>
 
