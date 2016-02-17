@@ -2,6 +2,7 @@
 <html>
   <head>
   <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
 </head>
 <body ng-app="ArticleAnnotater" ng-controller="AppCtrl" ng-cloak>
@@ -30,18 +31,18 @@
 		</md-content>
     </md-sidenav>
 
-	<div ng-controller="ExtractorCtrl" layout-sm="column">	
-		<md-content layout="row" layout-align="center" layout-wrap flex>
-			<form>
-		  		<md-input-container>
-					<label>Article URL</label>
-					<textarea ng-model="url" md-select-on-focus></textarea>
-				</md-input-container>
-				<md-button ng-click="extract()" ng-disabled="isUrlEmpty()" class="md-primary md-raised">Get</md-button>
-			</form>
-		</md-content>
+	<div ng-controller="ExtractorCtrl" layout="column">
+		<md-content layout="row">
+			<md-input-container class="md-block" flex>
+			   <label>Article URL</label>
+			   <input ng-model="url" md-select-on-focus>
+			</md-input-container>
+	  		<div>
+	  			<md-button ng-click="extract()" ng-disabled="isUrlEmpty()" class="md-primary md-raised">Get</md-button>
+	  		</div>
+  		</md-content>
 
-		<md-content layout="row" layout-wrap flex layout-padding>
+  		<md-content layout="row" layout-wrap flex layout-padding>
 			<div ng-bind-html="article"
 				 ng-mouseup="showSelectedText()" ng-keyup="onKeyUp($event)"
 				 event-focus-id="article" tabindex="0">
