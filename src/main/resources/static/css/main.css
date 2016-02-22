@@ -1,15 +1,7 @@
 body {
 	background-color: #f1f1f1;
 }
-
 .page-container {
     background-color: #f1f1f1;
     padding: 32px;
-}
-
-.page {
-    margin: 0 auto;
-    background-color: white;
-    padding: 24px;
-    max-width: 680px;
 }
