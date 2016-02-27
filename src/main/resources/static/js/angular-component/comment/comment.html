@@ -49,8 +49,35 @@
 	<div class="right">
 		<md-button class="md-icon-button md-primary">
 	      <md-icon md-svg-src="comment/ic_close_black_24px.svg"
-	      	ng-click="comment.toggle()">
+	      	ng-click="toggle()">
 	      </md-icon>
 	    </md-button>
 	</div>
+	<md-list style="overflow-y: scroll; height: 100%">
+      <md-subheader class="md-no-sticky">Comments</md-subheader>
+      <md-list-item class="md-3-line md-long-text" ng-repeat="comment in comments">
+        <img ng-src="{{comment.face}}?{{$index}}" class="md-avatar" alt="{{comment.who}}">
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ comment.who }}</h3>
+          <h4>{{ comment.when }}</h4>
+          <p> {{ comment.notes }} </p>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item class="md-2-line md-long-text">
+        <img ng-src="https://material.angularjs.org/latest/img/list/60.jpeg?0"
+            class="md-avatar" alt="Min Li Chan">
+        <div class="md-list-item-text" layout="column">
+            <h3>Min Li Chan</h3>
+			<md-input-container class="md-block">
+			    <label>Comment</label>
+			    <textarea ng-model="newComment" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+			</md-input-container>
+			<section layout="column" layout-align="center end">
+                <md-button class="md-raised md-primary" ng-click="addComment()"
+                    ng-disabled="isNewCommentEmpty()">Ok</md-button>
+			</section>
+        </div>
+      </md-list-item>
+    </md-list>
 </pageslide>
