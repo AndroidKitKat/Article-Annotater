@@ -40,6 +40,7 @@
 				        notes: $scope.newComment
 				      };
 				$scope.comments.push(comment);
+				$scope.newComment = "";
 			}
 
 			$scope.isNewCommentEmpty = function() {
