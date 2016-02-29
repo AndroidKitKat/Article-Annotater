@@ -1,5 +1,5 @@
 # [Article-Annotater](https://github.com/lowdev/article-annotater/)
-**Live Demo:** [https://satellizer.herokuapp.com](https://article-annotater.herokuapp.com/)
+**Live Demo:** [https://article-annotater.herokuapp.com](https://article-annotater.herokuapp.com/)
 
 Article annotater will be an annotation and collaboration tool for web Article.
 
