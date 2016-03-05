@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/animate.css">
 </head>
-<body ng-app="ArticleAnnotater" ng-controller="AppCtrl" ng-cloak>
+<body ng-app="ArticleAnnotater" ng-cloak>
 
 	<md-toolbar class="md-whiteframe-8dp">
 	  <div class="md-toolbar-tools">
@@ -58,48 +58,7 @@
   <script src="js/angular-component/article/angular-article-directive.js"></script>
   <script src="js/angular-component/comment/angular-comment-directive.js"></script>
   <script src="js/angular-component/contextMenu.js"></script>
- 
-  <!-- Your application bootstrap  -->
-  <script type="text/javascript">
-    angular
-    	.module('ArticleAnnotater', ['ngMaterial', 'article-directive', 'comment-directive'])
-    	.controller('AppCtrl', function ($scope) {
-			$scope.onKeyUp = function ($event) {
-				var key = window.event ? $event.keyCode : $event.which;
-				if (key == '67') {
-					$scope.toggle();
-				}
-		    };
-		    
-		    $scope.getSelectionText = function() {
-				if(window.getSelection) {
-				    return window.getSelection().toString();
-				}
-				
-				if(document.selection && document.selection.type != "Control") {
-				    return document.selection.createRange().text;
-				}
-				return "";
-		    };
-		})
-    	.controller('ExtractorCtrl', function($scope, $http, $sce) {
-			$scope.url = "";
-			$scope.article = "";
+  <script src="app.js"></script>
 
-			$scope.extract = function() {
-				$http
-					.get('/article?url=' + encodeURIComponent($scope.url))
-			        .success(function(data) {
-			            $scope.article = $sce.trustAsHtml(data.text);
-			        });
-			};
-			$scope.isUrlEmpty = function() {
-				return $scope.url == null || $scope.url.length == 0;
-			};
-		})
-		.controller('CommentsCtrl', function($scope) {
-		});
-  </script>
-  
 </body>
 </html>
