@@ -1,64 +1,39 @@
 <!doctype html>
 <html>
-  <head>
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/animate.css">
-</head>
-<body ng-app="ArticleAnnotater" ng-cloak>
+    <head>
+		<!-- Angular Material style sheet -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/animate.css">
+    </head>
+    <body ng-app="ArticleAnnotater" ng-cloak>
 
-	<md-toolbar class="md-whiteframe-8dp">
-	  <div class="md-toolbar-tools">
-	  	<span flex></span>
-	  </div>
-	</md-toolbar>
+		<md-toolbar class="md-whiteframe-8dp">
+			<div class="md-toolbar-tools">
+				<span flex></span>
+			</div>
+		</md-toolbar>
 
-	<div ng-controller="ExtractorCtrl" layout="column">
-		<md-content layout="row" layout-align="center center"
-			class="md-whiteframe-2dp" layout-padding>
-			<md-input-container class="md-block" flex>
-			   <label>Article URL</label>
-			   <input ng-model="url" md-select-on-focus>
-			</md-input-container>
-			<md-button ng-click="extract()" ng-disabled="isUrlEmpty()"
-				layout-align="center" class="md-fab">
-	            <md-icon md-svg-src="img/icons/ic_search_black_24px.svg"></md-icon>
-	        </md-button>
-  		</md-content>
-
-        <div class="page-container">
-            <article text="{{ article }}" add="addCustomer()"></article>
-        </div>
-
-        <section id="github-links" layout="row" layout-align="center center" layout-wrap="">
-	        <md-button class="md-raised" aria-label="Use Github"
-	            ng-href="https://github.com/lowdev/Article-Annotater">
-	            <md-icon md-svg-src="img/icons/gitHub-Mark-32px.svg"></md-icon>
-	            Github Project
-	        </md-button>
-	         <md-button class="md-raised" aria-label="Use Github"
-                ng-href="https://github.com/lowdev/Article-Annotater/issues/new">
-                <md-icon md-svg-src="img/icons/ic_bug_report_black_24px.svg"></md-icon>
-                Report Bug
-            </md-button>
-	    </section>
-	</div>
+        <div ui-view></div>
   
-  <!-- Angular Material requires Angular.js Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-messages.min.js"></script>
+		<!-- Angular Material requires Angular.js Libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-aria.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-messages.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script>
 
-  <!-- Angular Material Library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script>
-  <script src="js/angular-component/angular-pageslide-directive.min.js"></script>
-  <script src="js/angular-component/article/angular-article-directive.js"></script>
-  <script src="js/angular-component/comment/angular-comment-directive.js"></script>
-  <script src="js/angular-component/contextMenu.js"></script>
-  <script src="app.js"></script>
+        <!-- Third party angular component -->
+		<script src="js/angular-component/angular-pageslide-directive.min.js"></script>
+        <script src="js/angular-component/angular-ui-router.min.js"></script>
 
-</body>
+		<script src="js/angular-component/article/angular-article-directive.js"></script>
+		<script src="js/angular-component/comment/angular-comment-directive.js"></script>
+		<script src="js/angular-component/contextMenu.js"></script>
+
+        <!-- App -->
+		<script src="app.js"></script>
+		<script src="extractor/extractorController.js"></script>
+    </body>
 </html>
