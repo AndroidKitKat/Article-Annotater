@@ -1,4 +1,4 @@
-package eu.lowentropy.articleannotater;
+package eu.lowentropy.articleannotater.model;
 
 public class Article {
 	private String text;

@@ -2,6 +2,9 @@ package eu.lowentropy.articleannotater;
 
 import org.junit.Test;
 
+import eu.lowentropy.articleannotater.extractor.service.AArticleExtractor;
+import eu.lowentropy.articleannotater.extractor.service.GooseArticleExtractor;
+
 public class GooseAticleExtractorTest {
 
 	private AArticleExtractor articleExtractor = new GooseArticleExtractor();

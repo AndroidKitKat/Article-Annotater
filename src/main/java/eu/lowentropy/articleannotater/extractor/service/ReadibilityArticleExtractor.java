@@ -1,4 +1,4 @@
-package eu.lowentropy.articleannotater;
+package eu.lowentropy.articleannotater.extractor.service;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package eu.lowentropy.articleannotater;
+package eu.lowentropy.articleannotater.extractor.service;
 
 import java.net.MalformedURLException;
 import java.net.URL;

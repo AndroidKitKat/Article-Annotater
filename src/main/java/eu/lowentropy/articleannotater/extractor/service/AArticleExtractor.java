@@ -1,4 +1,4 @@
-package eu.lowentropy.articleannotater;
+package eu.lowentropy.articleannotater.extractor.service;
 
 public interface AArticleExtractor {
 	public static final String BOILERPIPE = "boilerpipe";
