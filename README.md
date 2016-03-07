@@ -14,6 +14,9 @@ Article-Annotater uses a number of open source projects to work properly:
 * [Readability] - Api to extract web page content
 * [ContextMenu] - (https://github.com/Templarian/ui.bootstrap.contextMenu)
 * [pageslide] - (https://github.com/dpiccone/ng-pageslide)
+* [Satellizer] - Login via google+ and facebook (https://github.com/sahat/satellizer)
+
+Thanks to you guys !!!
 
 ### Installation
 - mvn spring-boot:run
