@@ -21,7 +21,6 @@
 		    $scope.comments = [
 		      {
 		        face : imagePath,
-		        what: 'Brunch this weekend?',
 		        who: 'Min Li Chan',
 		        when: '3:08PM',
 		        notes: " Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam."
@@ -30,7 +29,6 @@
 		      },
 		      {
 		        face : imagePath,
-		        what: 'Brunch this weekend?',
 		        who: 'Min Li Chan',
 		        when: '3:08PM',
 		        notes: " I'll be in your neighborhood doing errands"
@@ -45,9 +43,8 @@
 			$scope.newComment = "";
 			$scope.addComment = function() {
 				var comment = {
-				        face : 'https://material.angularjs.org/latest/img/list/60.jpeg?0',
-				        what: 'Brunch this weekend?',
-				        who: 'Min Li Chan',
+				        face : $scope.myFace,
+				        who: $scope.myName,
 				        when: '3:08PM',
 				        notes: $scope.newComment
 				      };
