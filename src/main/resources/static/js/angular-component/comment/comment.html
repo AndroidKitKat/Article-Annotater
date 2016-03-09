@@ -65,10 +65,10 @@
       </md-list-item>
       <md-divider></md-divider>
       <md-list-item class="md-2-line md-long-text">
-        <img ng-src="https://material.angularjs.org/latest/img/list/60.jpeg?0"
-            class="md-avatar" alt="Min Li Chan">
+        <img ng-src="{{ myFace }}"
+            class="md-avatar" alt="{{ myName }}">
         <div class="md-list-item-text" layout="column">
-            <h3>Min Li Chan</h3>
+            <h3>{{ myName }}</h3>
 			<md-input-container class="md-block">
 			    <label>Comment</label>
 			    <textarea ng-model="newComment" md-maxlength="150" md-select-on-focus></textarea>

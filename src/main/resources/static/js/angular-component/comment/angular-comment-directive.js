@@ -1,11 +1,22 @@
 (function() {
 	  var app = angular.module('comment-directive', ['pageslide-directive']);
-	  app.config(function($sceProvider) {
-		  $sceProvider.enabled(false);
-	  });
+//	  app.config(function($sceProvider) {
+//		  $sceProvider.enabled(false);
+//	  });
 	  app.directive('comment', function() {
-	      var controller = function($scope) {
-			//var commentController = this;
+	      var controller = function($scope, $http) {
+	    	  $scope.myFace = "";
+	    	  $scope.myName = "Anonymous";
+	    	  $http.get('/user')
+		          .then(function (response) {
+		        	  var user = response.data;
+		        	  $scope.myFace = user.picture.data.url;
+		        	  $scope.myName = user.name;
+		          })
+		          .catch(function (response) {
+		        	  console.log("getUserInfo error", response);
+		          })
+
 	    	var imagePath = 'https://material.angularjs.org/latest/img/list/60.jpeg?0';
 		    $scope.comments = [
 		      {
