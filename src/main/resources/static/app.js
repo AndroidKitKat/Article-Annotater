@@ -7,7 +7,10 @@
 				.state('home', {
 					url: '/',
 					controller: 'ExtractorCtrl',
-					templateUrl: 'extractor/extractor.html'
+					templateUrl: 'extractor/extractor.html',
+					resolve: {
+						loginRequired: loginRequired
+			        }
 				})
 				.state('login', {
 					url: '/login',
