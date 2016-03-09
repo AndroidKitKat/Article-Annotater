@@ -25,12 +25,13 @@
 		        notes: " I'll be in your neighborhood doing errands"
 		      }
 		    ];
+
 			$scope.open = false;
-			$scope.newComment = "";
 			$scope.toggle = function() {
 				$scope.open = !$scope.open;
 			}
 
+			$scope.newComment = "";
 			$scope.addComment = function() {
 				var comment = {
 				        face : 'https://material.angularjs.org/latest/img/list/60.jpeg?0',
