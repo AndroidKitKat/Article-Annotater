@@ -1,4 +1,4 @@
-package eu.lowentropy.articleannotater.auth.controller;
+package eu.lowentropy.articleannotater.facebook.auth;
 
 import java.net.URI;
 
@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import org.apache.http.client.ResponseHandler;
 import org.springframework.stereotype.Service;
 
+import eu.lowentropy.articleannotater.facebook.me.FacebookMe;
 import eu.lowentropy.articleannotater.rest.BaseRestCaller;
 import eu.lowentropy.articleannotater.rest.ResponseHandlerBase;
 import eu.lowentropy.articleannotater.rest.RestCaller;

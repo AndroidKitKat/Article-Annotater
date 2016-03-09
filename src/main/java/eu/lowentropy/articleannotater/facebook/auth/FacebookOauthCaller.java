@@ -1,4 +1,4 @@
-package eu.lowentropy.articleannotater.auth.controller;
+package eu.lowentropy.articleannotater.facebook.auth;
 
 import java.net.URI;
 
