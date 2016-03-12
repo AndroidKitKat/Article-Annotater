@@ -1,39 +1,28 @@
 (function() {
-	  var app = angular.module('comment-directive', ['pageslide-directive']);
+	var app = angular.module('comment-directive', ['pageslide-directive']);
 //	  app.config(function($sceProvider) {
 //		  $sceProvider.enabled(false);
 //	  });
-	  app.directive('comment', function() {
-	      var controller = function($scope, $http) {
-	    	  $scope.myFace = "";
-	    	  $scope.myName = "Anonymous";
-	    	  $http.get('/user')
-		          .then(function (response) {
-		        	  var user = response.data;
-		        	  $scope.myFace = user.picture.data.url;
-		        	  $scope.myName = user.name;
-		          })
-		          .catch(function (response) {
-		        	  console.log("getUserInfo error", response);
-		          })
-
-	    	var imagePath = 'https://material.angularjs.org/latest/img/list/60.jpeg?0';
-		    $scope.comments = [
-		      {
-		        face : imagePath,
-		        who: 'Min Li Chan',
-		        when: '3:08PM',
-		        notes: " Secondary line text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa quam."
-		        		+ "Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum"
-		        		+ "velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
-		      },
-		      {
-		        face : imagePath,
-		        who: 'Min Li Chan',
-		        when: '3:08PM',
-		        notes: " I'll be in your neighborhood doing errands"
-		      }
-		    ];
+	app.directive('comment', function() {
+		var controller = function($scope, $http) {
+			$scope.myFace = "";
+			$scope.myName = "Anonymous";
+			$http.get('/user')
+				.then(function (response) {
+					var user = response.data;
+					$scope.myFace = user.picture.data.url;
+					$scope.myName = user.name;
+				})
+				.catch(function (response) {
+					console.log("getUserInfo error", response);
+				});
+			$http.get('/comments?url=' + encodeURIComponent($scope.comment.url))
+				.then(function (response) {
+					$scope.comments = response.data;
+				})
+				.catch(function (response) {
+					console.log("comments error", response);
+				});
 
 			$scope.open = false;
 			$scope.toggle = function() {
@@ -43,11 +32,11 @@
 			$scope.newComment = "";
 			$scope.addComment = function() {
 				var comment = {
-				        face: $scope.myFace,
-				        who: $scope.myName,
-				        when: new Date(),
-				        notes: $scope.newComment
-				      };
+					face: $scope.myFace,
+					who: $scope.myName,
+					when: new Date(),
+					notes: $scope.newComment
+				};
 
 				$scope.comments.push(comment);
 				$scope.newComment = "";
@@ -56,11 +45,8 @@
 				commentToSave.articleId = $scope.comment.url;
 				commentToSave.comment = comment;
 				var parameter = JSON.stringify(commentToSave);
-				$http
-					.post('/comment', parameter)
-			        .success(function(data) {
-			        });
-			}
+				$http.post('/comment', parameter);
+			};
 
 			$scope.isNewCommentEmpty = function() {
 				return $scope.newComment == null || $scope.newComment.length == 0;
