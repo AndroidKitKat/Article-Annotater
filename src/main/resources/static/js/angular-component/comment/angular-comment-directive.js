@@ -43,13 +43,23 @@
 			$scope.newComment = "";
 			$scope.addComment = function() {
 				var comment = {
-				        face : $scope.myFace,
+				        face: $scope.myFace,
 				        who: $scope.myName,
-				        when: '3:08PM',
+				        when: new Date(),
 				        notes: $scope.newComment
 				      };
+
 				$scope.comments.push(comment);
 				$scope.newComment = "";
+
+				var commentToSave = {};
+				commentToSave.articleId = $scope.comment.url;
+				commentToSave.comment = comment;
+				var parameter = JSON.stringify(commentToSave);
+				$http
+					.post('/comment', parameter)
+			        .success(function(data) {
+			        });
 			}
 
 			$scope.isNewCommentEmpty = function() {
@@ -64,7 +74,7 @@
 	      return {
 	          restrict: 'EA', //Default for 1.3+
 	          scope: {
-	        	  open: '@text'
+	        	  url: '@url'
 	          },
 	          controller: controller,
 	          controllerAs: 'comment',

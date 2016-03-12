@@ -38,7 +38,8 @@
 		return {
 	          restrict: 'EA', //Default for 1.3+
 	          scope: {
-	        	  text: '@text'
+	        	  text: '@text',
+	        	  url: '@url'
 	          },
 	          controller: controller,
 	          link: link,
