@@ -6,6 +6,11 @@
 			$stateProvider
 				.state('home', {
 					url: '/',
+					controller: 'HomeCtrl',
+					templateUrl: 'home/home.html'
+				})
+				.state('extractor', {
+					url: '/extractor',
 					controller: 'ExtractorCtrl',
 					templateUrl: 'extractor/extractor.html',
 					resolve: {
