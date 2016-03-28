@@ -10,4 +10,4 @@ angular
 				$location.path('/');
 			});
 		}
-});
+	});
