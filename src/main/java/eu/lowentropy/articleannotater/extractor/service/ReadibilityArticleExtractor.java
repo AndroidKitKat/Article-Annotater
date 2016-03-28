@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import eu.lowentropy.articleannotater.rest.RestCaller;
 
-@Service(AArticleExtractor.READABILITY)
-public class ReadibilityArticleExtractor implements AArticleExtractor {
+@Service(ArticleExtractor.READABILITY)
+public class ReadibilityArticleExtractor implements ArticleExtractor {
 
 	@Value("${readibility.token}")
 	private String readibilityToken;
@@ -22,7 +22,7 @@ public class ReadibilityArticleExtractor implements AArticleExtractor {
 	private ReadibilityCaller caller;
 
 	@Override
-	public String getText(String url) {
+	public ReadabilityResponse getArticle(String url) {
 		URI uri;
 		try {
 			uri = new URIBuilder()
@@ -36,8 +36,6 @@ public class ReadibilityArticleExtractor implements AArticleExtractor {
 			throw new IllegalArgumentException(e1);
 		}
 
-		ReadabilityResponse response = caller.call(uri);
-		return response.getContent();
+		return caller.call(uri);
 	}
-
 }
