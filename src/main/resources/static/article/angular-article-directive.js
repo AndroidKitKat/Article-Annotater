@@ -45,7 +45,7 @@
 	          link: link,
 	          controllerAs: 'vm',
 	          bindToController: true, //required in 1.3+ with controllerAs
-	          templateUrl: '/js/angular-component/article/article.html'
+	          templateUrl: '/article/article.html'
 	      };
 	  });
 }());

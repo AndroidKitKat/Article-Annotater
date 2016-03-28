@@ -65,7 +65,7 @@
 	          controller: controller,
 	          controllerAs: 'comment',
 	          bindToController: true, //required in 1.3+ with controllerAs
-	          templateUrl: '/js/angular-component/comment/comment.html'
+	          templateUrl: '/comment/comment.html'
 	      };
 	  });
 }());
