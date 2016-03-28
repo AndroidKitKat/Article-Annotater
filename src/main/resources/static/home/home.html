@@ -1,4 +1,31 @@
+<style>
+<!--
+    md-grid-list {
+        background-color: #f1f1f1; }
+    .md-grid-list {
+	  margin: 8px; }
+	.gray {
+	  background: #f5f5f5; }
+	.md-grid-tile {
+	  transition: all 400ms ease-out 50ms; }
+-->
+</style>
 <div layout="column">
+    <section>
+	    <H3>Last articles</H3>
+	    <md-grid-list
+	        md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6"
+	        md-row-height-gt-md="1:1" md-row-height="2:2"
+	        md-gutter="12px" md-gutter-gt-sm="8px" >
+		    <md-grid-tile ng-repeat="article in articles" class="yellow">
+				<img style="width: calc(100%);" src="{{article.leadImageUrl}}"></img>
+				<md-grid-tile-footer>
+		            <h3>{{article.title}}</h3>
+				</md-grid-tile-footer>
+		    </md-grid-tile>
+        </md-grid-list>
+    </section>
+    
     <section id="github-links" layout="row" layout-align="center center" layout-wrap="">
         <md-button class="md-raised" aria-label="Use Github"
             ng-href="https://github.com/lowdev/Article-Annotater">

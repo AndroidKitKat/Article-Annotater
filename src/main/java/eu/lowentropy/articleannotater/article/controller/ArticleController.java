@@ -1,5 +1,8 @@
 package eu.lowentropy.articleannotater.article.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,11 +38,17 @@ public class ArticleController {
 		return article;
     }
 
+	@RequestMapping(value = "/article", method = RequestMethod.GET, produces = "application/json")
+    public List<Article> get() {
+		return articleRepository.findTop3ByOrderBySaveDateAsc();
+    }
+
 	private Article toArticle(ReadabilityResponse response) {
 		return Article.builder().url(response.getUrl())
 				.title(response.getTitle())
 				.leadImageUrl(response.getLead_image_url())
 				.text(response.getContent())
+				.saveDate(new Date())
 				.build();
 	}
 }
